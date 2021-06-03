@@ -13,7 +13,6 @@ let numbers = [];
 let firstValue, secondValue;
 let operation;
 let displayFirst, displaySecond;
-let result;
 
 const updateDisplay = function () {
     display.textContent = `${displayFirst ? displayFirst : ""} ${operation ? operation : ""} ${displaySecond ? displaySecond : ""}`;
@@ -30,6 +29,8 @@ const doTheMath = function (symbol) {
     displayFirst = firstValue;
 
     numbers = [];
+
+    updateDisplay();
 };
 
 btnContainer.addEventListener("click", function (e) {
@@ -43,6 +44,16 @@ btnContainer.addEventListener("click", function (e) {
         const value = +btn.textContent;
 
         numbers.push(value);
+
+        if (!operation) {
+            displayFirst = getNumbers(numbers);
+            updateDisplay();
+        }
+
+        if (operation) {
+            displaySecond = getNumbers(numbers);
+            updateDisplay();
+        }
     }
 });
 
@@ -63,50 +74,19 @@ btnMultipy.addEventListener("click", function () {
 });
 
 btnEqual.addEventListener("click", function () {
+    let value;
+
     secondValue = getNumbers(numbers);
     displaySecond = secondValue;
 
-    if (operation === "+") {
-        const value = firstValue + secondValue;
+    if (operation === "+") value = firstValue + secondValue;
 
-        result = value;
+    if (operation === "-") value = firstValue - secondValue;
 
-        console.log(value);
+    if (operation === "x") value = firstValue * secondValue;
 
-        display.textContent = "";
-        display.textContent = `${value}`;
-    }
+    if (operation === "÷") value = firstValue / secondValue;
 
-    if (operation === "-") {
-        const value = firstValue - secondValue;
-
-        result = value;
-
-        console.log(value);
-
-        display.textContent = "";
-        display.textContent = `${value}`;
-    }
-
-    if (operation === "x") {
-        const value = firstValue * secondValue;
-
-        result = value;
-
-        console.log(value);
-
-        display.textContent = "";
-        display.textContent = `${value}`;
-    }
-
-    if (operation === "÷") {
-        const value = firstValue / secondValue;
-
-        result = value;
-
-        console.log(value);
-
-        display.textContent = "";
-        display.textContent = `${value}`;
-    }
+    display.textContent = "";
+    display.textContent = value;
 });
