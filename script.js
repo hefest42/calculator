@@ -26,7 +26,6 @@ const doTheMath = function (symbol) {
     operation = symbol;
 
     firstValue = getNumbers(numbers);
-    displayFirst = firstValue;
 
     numbers = [];
 
@@ -75,18 +74,19 @@ btnMultipy.addEventListener("click", function () {
 
 btnEqual.addEventListener("click", function () {
     let value;
+    if (firstValue) secondValue = getNumbers(numbers);
 
-    secondValue = getNumbers(numbers);
-    displaySecond = secondValue;
+    if (firstValue && secondValue) {
+        if (operation === "+") value = firstValue + secondValue;
 
-    if (operation === "+") value = firstValue + secondValue;
+        if (operation === "-") value = firstValue - secondValue;
 
-    if (operation === "-") value = firstValue - secondValue;
+        if (operation === "x") value = firstValue * secondValue;
 
-    if (operation === "x") value = firstValue * secondValue;
+        if (operation === "÷") value = firstValue / secondValue;
 
-    if (operation === "÷") value = firstValue / secondValue;
-
-    display.textContent = "";
-    display.textContent = value;
+        numbers = [];
+        display.textContent = "";
+        display.textContent = `${value % 1 !== 0 ? value.toFixed(4) : value}`;
+    }
 });
