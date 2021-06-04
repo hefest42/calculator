@@ -9,6 +9,8 @@ const btnDivide = document.querySelector(".btn-divide");
 const btnMultipy = document.querySelector(".btn-multiply");
 const btnEqual = document.querySelector(".btn-equal");
 
+/*
+const numbertest = [];
 let numbers = [];
 let firstValue, secondValue;
 let operation;
@@ -43,6 +45,7 @@ btnContainer.addEventListener("click", function (e) {
         const value = +btn.textContent;
 
         numbers.push(value);
+        numbertest.push(value);
 
         if (!operation) {
             displayFirst = getNumbers(numbers);
@@ -58,18 +61,22 @@ btnContainer.addEventListener("click", function (e) {
 
 btnPlus.addEventListener("click", function (e) {
     doTheMath("+");
+    numbertest.push("+");
 });
 
 btnMinus.addEventListener("click", function (e) {
     doTheMath("-");
+    numbertest.push("-");
 });
 
 btnDivide.addEventListener("click", function () {
     doTheMath("÷");
+    numbertest.push("/");
 });
 
 btnMultipy.addEventListener("click", function () {
     doTheMath("x");
+    numbertest.push("*");
 });
 
 btnEqual.addEventListener("click", function () {
@@ -90,3 +97,13 @@ btnEqual.addEventListener("click", function () {
         display.textContent = `${value % 1 !== 0 ? value.toFixed(4) : value}`;
     }
 });
+
+const testfunc = function () {
+    const numbers = numbertest.join("");
+    const results = eval(numbers);
+    console.log(numbers);
+
+    console.log(results);
+};
+
+*/
