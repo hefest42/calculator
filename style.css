@@ -17,7 +17,7 @@
 .calc-container {
     background-color: rgb(102, 102, 102);
     width: 30rem;
-    height: 38rem;
+    height: 45rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -42,13 +42,17 @@
     margin-top: 1rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 15px;
 }
 
 .btn {
     border-radius: 10px;
     font-size: 2rem;
+}
+
+.btn-zero {
+    grid-column: span 2;
 }
 
 .btn-equal {
