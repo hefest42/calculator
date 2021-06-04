@@ -1,61 +1,62 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 * {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .container {
-    background-color: rgb(221, 221, 221);
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: rgb(221, 221, 221);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .calc-container {
-    background-color: rgb(102, 102, 102);
-    width: 30rem;
-    height: 45rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+  background-color: rgb(102, 102, 102);
+  width: 30rem;
+  height: 45rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .display {
-    background-color: rgb(93, 131, 93);
-    width: 85%;
-    height: 20%;
-    margin-top: 1.5rem;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    font-size: 4vw;
-    font-family: "Press Start 2P", cursive;
+  background-color: rgb(93, 131, 93);
+  width: 85%;
+  height: 20%;
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  font-size: 20px;
+  font-family: "Press Start 2P", cursive;
+  overflow: hidden;
 }
 
 .button-container {
-    width: 85%;
-    height: 70%;
-    margin-top: 1rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 15px;
+  width: 85%;
+  height: 70%;
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 15px;
 }
 
 .btn {
-    border-radius: 10px;
-    font-size: 2rem;
+  border-radius: 10px;
+  font-size: 2rem;
 }
 
 .btn-zero {
-    grid-column: span 2;
+  grid-column: span 2;
 }
 
 .btn-equal {
-    background-color: #931319;
-    border: #931319;
+  background-color: #931319;
+  border: #931319;
 }
