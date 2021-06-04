@@ -3,12 +3,85 @@
 const display = document.querySelector(".display");
 const btnContainer = document.querySelector(".button-container");
 const buttons = document.querySelectorAll(".btn");
-const btnPlus = document.querySelector(".btn-plus");
-const btnMinus = document.querySelector(".btn-minus");
-const btnDivide = document.querySelector(".btn-divide");
-const btnMultipy = document.querySelector(".btn-multiply");
+const operations = document.querySelectorAll(".operation"); //? all operations(+, -, /, *, .)
 const btnEqual = document.querySelector(".btn-equal");
+const btnClear = document.querySelector(".btn-clear");
 
+let numbers = [];
+let displayNumbers = [];
+let working = true;
+
+const updateDisplay = function () {
+    display.textContent = displayNumbers.join("");
+};
+
+const addNumber = function (operation, display) {
+    numbers.push(operation);
+    displayNumbers.push(display);
+};
+
+btnContainer.addEventListener("click", function (e) {
+    const btn = e.target.closest(".number");
+
+    if (!btn) return;
+
+    if (working) {
+        const value = btn.textContent;
+
+        addNumber(value, value);
+
+        updateDisplay();
+    }
+});
+
+operations.forEach(operation =>
+    operation.addEventListener("click", function (e) {
+        const btn = e.target.closest(".operation");
+
+        if (!btn) return;
+
+        if (btn.textContent === "x") addNumber("*", "x");
+        if (btn.textContent === "÷") addNumber("/", "÷");
+        if (btn.textContent === "+") addNumber("+", "+");
+        if (btn.textContent === "-") addNumber("-", "-");
+        if (btn.textContent === ".") addNumber(".", ".");
+
+        working = true;
+        updateDisplay();
+    })
+);
+
+btnEqual.addEventListener("click", function (e) {
+    const allNumbers = numbers.join("");
+
+    const result = eval(allNumbers);
+    const displayResult = result % 1 !== 0 ? result.toFixed(2) : result;
+
+    numbers = [];
+    displayNumbers = [];
+
+    addNumber(result, displayResult);
+
+    working = false;
+    updateDisplay();
+});
+
+btnClear.addEventListener("click", function (e) {
+    numbers = [];
+    displayNumbers = [];
+
+    updateDisplay();
+});
+
+window.addEventListener("keydown", function (e) {
+    if (e.keyCode === 8) {
+        numbers.pop();
+        displayNumbers.pop();
+
+        updateDisplay();
+    }
+});
+//! Version 1.0
 /*
 const numbertest = [];
 let numbers = [];
