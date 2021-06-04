@@ -12,74 +12,74 @@ let displayNumbers = [];
 let working = true;
 
 const updateDisplay = function () {
-    display.textContent = displayNumbers.join("");
+  display.textContent = displayNumbers.join("");
 };
 
 const addNumber = function (operation, display) {
-    numbers.push(operation);
-    displayNumbers.push(display);
+  numbers.push(operation);
+  displayNumbers.push(display);
 };
 
 btnContainer.addEventListener("click", function (e) {
-    const btn = e.target.closest(".number");
+  const btn = e.target.closest(".number");
+
+  if (!btn) return;
+
+  if (working) {
+    const value = btn.textContent;
+
+    addNumber(value, value);
+
+    updateDisplay();
+  }
+});
+
+operations.forEach((operation) =>
+  operation.addEventListener("click", function (e) {
+    const btn = e.target.closest(".operation");
 
     if (!btn) return;
 
-    if (working) {
-        const value = btn.textContent;
+    if (btn.textContent === "x") addNumber("*", "x");
+    if (btn.textContent === "÷") addNumber("/", "÷");
+    if (btn.textContent === "+") addNumber("+", "+");
+    if (btn.textContent === "-") addNumber("-", "-");
+    if (btn.textContent === ".") addNumber(".", ".");
 
-        addNumber(value, value);
-
-        updateDisplay();
-    }
-});
-
-operations.forEach(operation =>
-    operation.addEventListener("click", function (e) {
-        const btn = e.target.closest(".operation");
-
-        if (!btn) return;
-
-        if (btn.textContent === "x") addNumber("*", "x");
-        if (btn.textContent === "÷") addNumber("/", "÷");
-        if (btn.textContent === "+") addNumber("+", "+");
-        if (btn.textContent === "-") addNumber("-", "-");
-        if (btn.textContent === ".") addNumber(".", ".");
-
-        working = true;
-        updateDisplay();
-    })
+    working = true;
+    updateDisplay();
+  })
 );
 
 btnEqual.addEventListener("click", function (e) {
-    const allNumbers = numbers.join("");
+  const allNumbers = numbers.join("");
 
-    const result = eval(allNumbers);
-    const displayResult = result % 1 !== 0 ? result.toFixed(2) : result;
+  const result = eval(allNumbers);
+  const displayResult = result % 1 !== 0 ? result.toFixed(3) : result;
 
-    numbers = [];
-    displayNumbers = [];
+  numbers = [];
+  displayNumbers = [];
 
-    addNumber(result, displayResult);
+  addNumber(result, displayResult);
 
-    working = false;
-    updateDisplay();
+  working = false;
+  updateDisplay();
 });
 
 btnClear.addEventListener("click", function (e) {
-    numbers = [];
-    displayNumbers = [];
+  numbers = [];
+  displayNumbers = [];
 
-    updateDisplay();
+  updateDisplay();
 });
 
 window.addEventListener("keydown", function (e) {
-    if (e.keyCode === 8) {
-        numbers.pop();
-        displayNumbers.pop();
+  if (e.keyCode === 8) {
+    numbers.pop();
+    displayNumbers.pop();
 
-        updateDisplay();
-    }
+    updateDisplay();
+  }
 });
 //! Version 1.0
 /*
